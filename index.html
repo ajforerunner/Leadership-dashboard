@@ -31,7 +31,7 @@
     }
     
     body {
-      background-color: var(--bg-color);
+      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4d 50%, #24243e 100%);
       color: var(--text-color);
       min-height: 100vh;
       padding: 20px;
@@ -100,16 +100,18 @@
     }
     
     .card {
-      background-color: var(--card-bg);
+      background: linear-gradient(145deg, rgba(23, 20, 53, 0.95), rgba(30, 27, 60, 0.9));
       border-radius: var(--card-radius);
       padding: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
     
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
     
     .card-header {
@@ -120,10 +122,17 @@
     }
     
     .card-title {
-      font-size: 1.8rem;
-      letter-spacing: 1px;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
       font-weight: 600;
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: linear-gradient(to right, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
     }
     
     .card-subtitle {
@@ -133,25 +142,27 @@
     }
     
     .complete-btn {
-      background: linear-gradient(135deg, var(--primary-color) 0%, #ff8a50 100%);
+      background: linear-gradient(135deg, #6131c5, #9454e6);
       border: none;
       color: var(--text-color);
-      padding: 8px 14px;
+      padding: 8px 10px;
       border-radius: 6px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 5px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+      box-shadow: 0 4px 10px rgba(116, 79, 198, 0.4);
+      white-space: nowrap;
     }
     
     /* Blue button for Leadership Engagement */
     .blue-btn {
       background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-highlight) 100%);
       box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+      font-size: 0.75rem;
     }
     
     .blue-btn:hover {
@@ -161,7 +172,7 @@
     
     .complete-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(255, 87, 34, 0.4);
+      box-shadow: 0 6px 15px rgba(116, 79, 198, 0.5);
     }
     
     .team-list {
@@ -174,13 +185,15 @@
       display: flex;
       align-items: center;
       padding: 12px;
-      background-color: var(--secondary-color);
-      border-radius: 8px;
+      background: linear-gradient(135deg, #171435 0%, #2a1b5b 100%);
+      border-radius: 10px;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       text-decoration: none;
       color: var(--text-color);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
     
     .team-item .team-name {
@@ -192,9 +205,14 @@
     }
     
     .team-item:hover {
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.15);
       transform: translateY(-2px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .blue-team-item:hover {
+      background: rgba(255, 255, 255, 0.85);
     }
     
     .team-item::after {
@@ -205,7 +223,7 @@
       text-align: center;
       font-size: 0.95rem;
       font-weight: 700;
-      color: var(--primary-color);
+      color: #8a63de;
       opacity: 0;
       transform: translateY(10px);
       transition: all 0.3s ease;
@@ -217,8 +235,8 @@
     }
     
     /* Blue team items for Leadership Engagement */
-    .blue-team-item:hover {
-      background-color: rgba(255, 255, 255, 0.9);
+    .blue-team-item {
+      background: linear-gradient(135deg, #1a2b54 0%, #253b80 100%);
     }
     
     .blue-team-item::after {
@@ -228,27 +246,36 @@
     .team-avatar {
       width: 40px;
       height: 40px;
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, #6131c5, #9454e6);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
       margin-right: 15px;
+      box-shadow: 0 2px 10px rgba(116, 79, 198, 0.6);
     }
     
     /* Blue avatars for Leadership Engagement */
     .blue-avatar {
-      background-color: var(--blue-primary);
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-highlight));
+      box-shadow: 0 2px 10px rgba(52, 152, 219, 0.4);
+    }
+    
+    .card:nth-child(2) {
+      background: linear-gradient(145deg, rgba(18, 31, 65, 0.98), rgba(22, 36, 72, 0.95));
     }
     
     .energy-flow {
       margin-top: 30px;
       padding: 30px;
-      background: linear-gradient(to right, rgba(34, 34, 40, 0.8), rgba(34, 34, 40, 0.95));
+      background: linear-gradient(145deg, rgba(20, 20, 48, 0.9), rgba(26, 26, 58, 0.85));
       border-radius: var(--card-radius);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
     }
     
     .energy-title {
@@ -269,10 +296,11 @@
       left: 0;
       width: 100%;
       height: 20px;
-      background-color: #333339;
+      background-color: rgba(51, 51, 71, 0.6);
       transform: translateY(-50%);
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
     }
     
     .flow-highlight {
@@ -395,23 +423,23 @@
         
         <div class="team-list">
           <!-- All team members link to the same tour form -->
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&" class="team-item">
             <div class="team-avatar">MV</div>
             <div class="team-name">Michaela Valovicova</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&" class="team-item">
             <div class="team-avatar">EG</div>
             <div class="team-name">Emma Gould</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&" class="team-item">
             <div class="team-avatar">JC</div>
             <div class="team-name">Jerome Crespin</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&" class="team-item">
             <div class="team-avatar">RG</div>
             <div class="team-name">Rachel Gwilliam</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&" class="team-item">
             <div class="team-avatar">EH</div>
             <div class="team-name">Emmanuel Helman</div>
           </a>
@@ -477,7 +505,7 @@
       
       <div class="flow-visualization">
         <div class="flow-path">
-          <div class="flow-highlight" style="width: 55%; background: linear-gradient(to right, #ff7f50, #ffa07a);"></div>
+          <div class="flow-highlight" style="width: 52%; background: linear-gradient(to right, #ff7f50, #ffa07a);"></div>
         </div>
         <div class="flow-node" style="left: 50%; background-color: #ff7f50; box-shadow: 0 0 15px rgba(255, 127, 80, 0.7);">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

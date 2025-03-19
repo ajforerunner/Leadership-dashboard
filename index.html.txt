@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership Dashboard</title>
+  <!-- Import Nunito Sans font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #1a1a1f;
+      --card-bg: #222228;
+      --primary-color: #ff5722;
+      --secondary-color: #333339;
+      --text-color: #ffffff;
+      --gray-text: #8a8a9b;
+      --card-radius: 12px;
+      
+      /* New blue theme colors for Leadership Engagement */
+      --blue-primary: #3498db;
+      --blue-secondary: #2980b9;
+      --blue-highlight: #5dade2;
+      --blue-dark: #1f618d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      padding: 20px;
+      padding-top: 40px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .logo span {
+      margin-left: 8px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-links a {
+      color: var(--gray-text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-color);
+    }
+    
+    .user-actions {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .user-actions button {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .card-title {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .card-subtitle {
+      color: var(--gray-text);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    
+    .complete-btn {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #ff8a50 100%);
+      border: none;
+      color: var(--text-color);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+    }
+    
+    /* Blue button for Leadership Engagement */
+    .blue-btn {
+      background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-highlight) 100%);
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    }
+    
+    .blue-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+    }
+    
+    .complete-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(255, 87, 34, 0.4);
+    }
+    
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .team-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background-color: var(--secondary-color);
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-decoration: none;
+      color: var(--text-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .team-item .team-name {
+      transition: opacity 0.3s ease;
+    }
+    
+    .team-item:hover .team-name {
+      opacity: 0;
+    }
+    
+    .team-item:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .team-item::after {
+      content: "Complete Form ↗";
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .team-item:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Blue team items for Leadership Engagement */
+    .blue-team-item:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .blue-team-item::after {
+      color: var(--blue-primary);
+    }
+    
+    .team-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    /* Blue avatars for Leadership Engagement */
+    .blue-avatar {
+      background-color: var(--blue-primary);
+    }
+    
+    .energy-flow {
+      margin-top: 30px;
+      padding: 30px;
+      background: linear-gradient(to right, rgba(34, 34, 40, 0.8), rgba(34, 34, 40, 0.95));
+      border-radius: var(--card-radius);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .energy-title {
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+    
+    .flow-visualization {
+      position: relative;
+      height: 120px;
+      margin-top: 40px;
+    }
+    
+    .flow-path {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background-color: #333339;
+      transform: translateY(-50%);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .flow-highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(to right, var(--primary-color), rgba(255, 87, 34, 0.5));
+      border-radius: 10px;
+    }
+    
+    /* Blue flow highlight */
+    .blue-flow-highlight {
+      background: linear-gradient(to right, var(--blue-primary), rgba(52, 152, 219, 0.5));
+    }
+    
+    .flow-node {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      top: 50%;
+      left: 30%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      box-shadow: 0 0 15px rgba(255, 87, 34, 0.7);
+    }
+    
+    /* Blue flow node */
+    .blue-flow-node {
+      background-color: var(--blue-primary);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
+    }
+    
+    .flow-output {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Blue flow output */
+    .blue-flow-output {
+      background-color: var(--blue-primary);
+    }
+    
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .status-item:last-child {
+      border-bottom: none;
+    }
+    
+    .status-name {
+      color: var(--gray-text);
+    }
+    
+    .status-value {
+      display: flex;
+      align-items: center;
+    }
+    
+    .status-indicator {
+      width: 30px;
+      height: 8px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+    
+    .status-on {
+      background-color: var(--primary-color);
+    }
+    
+    .status-off {
+      background-color: #444;
+    }
+    
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header removed as per original -->
+    
+    <main>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Leadership Tour</h2>
+            <p class="card-subtitle">Team members</p>
+          </div>
+          <button class="complete-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            COMPLETE FORM
+          </button>
+        </div>
+        
+        <div class="team-list">
+          <!-- All team members link to the same tour form -->
+          <a href="https://equans.sharepoint.com/:l:/s/BIProjects/FCY6gvyFBk9MsxSl9H6eOGgB_1RtV8pm0UhyfhK0xe1iuQ?nav=Zjk1ZjhjM2EtYjMzYS00N2U1LTg1N" class="team-item">
+            <div class="team-avatar">MV</div>
+            <div class="team-name">Michaela Valovicova</div>
+          </a>
+          <a href="https://equans.sharepoint.com/:l:/s/BIProjects/FCY6gvyFBk9MsxSl9H6eOGgB_1RtV8pm0UhyfhK0xe1iuQ?nav=Zjk1ZjhjM2EtYjMzYS00N2U1LTg1N" class="team-item">
+            <div class="team-avatar">EG</div>
+            <div class="team-name">Emma Gould</div>
+          </a>
+          <a href="https://equans.sharepoint.com/:l:/s/BIProjects/FCY6gvyFBk9MsxSl9H6eOGgB_1RtV8pm0UhyfhK0xe1iuQ?nav=Zjk1ZjhjM2EtYjMzYS00N2U1LTg1N" class="team-item">
+            <div class="team-avatar">JC</div>
+            <div class="team-name">Jerome Crespin</div>
+          </a>
+          <a href="https://equans.sharepoint.com/:l:/s/BIProjects/FCY6gvyFBk9MsxSl9H6eOGgB_1RtV8pm0UhyfhK0xe1iuQ?nav=Zjk1ZjhjM2EtYjMzYS00N2U1LTg1N" class="team-item">
+            <div class="team-avatar">RG</div>
+            <div class="team-name">Rachel Gwilliam</div>
+          </a>
+          <a href="https://equans.sharepoint.com/:l:/s/BIProjects/FCY6gvyFBk9MsxSl9H6eOGgB_1RtV8pm0UhyfhK0xe1iuQ?nav=Zjk1ZjhjM2EtYjMzYS00N2U1LTg1N" class="team-item">
+            <div class="team-avatar">EH</div>
+            <div class="team-name">Emmanuel Helman</div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Leadership Engagement section with blue theme -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Leadership Engagement</h2>
+            <p class="card-subtitle">Team members</p>
+          </div>
+          <button class="complete-btn blue-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            COMPLETE FORM
+          </button>
+        </div>
+        
+        <div class="team-list">
+          <!-- All team members link to the same engagement form -->
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">SW</div>
+            <div class="team-name">Steven Weir</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">AA</div>
+            <div class="team-name">Adeel Aslam</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">CM</div>
+            <div class="team-name">Chris Mosley</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">MK</div>
+            <div class="team-name">Mark Kelly</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">NM</div>
+            <div class="team-name">Neil McGrath</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">AM</div>
+            <div class="team-name">Alan Miller</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">SM</div>
+            <div class="team-name">Simon Millward</div>
+          </a>
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+            <div class="team-avatar blue-avatar">CL</div>
+            <div class="team-name">Charlie Louet</div>
+          </a>
+        </div>
+      </div>
+    </main>
+    
+    <div class="energy-flow">
+      <h2 class="energy-title">LEADERSHIP ENGAGEMENT VISIT - 2024</h2>
+      
+      <div class="flow-visualization">
+        <div class="flow-path">
+          <div class="flow-highlight" style="width: 55%; background: linear-gradient(to right, #ff7f50, #ffa07a);"></div>
+        </div>
+        <div class="flow-node" style="left: 50%; background-color: #ff7f50; box-shadow: 0 0 15px rgba(255, 127, 80, 0.7);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+        </div>
+        <div class="flow-output" style="background-color: #ff7f50;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+          RATE: 50%
+        </div>
+      </div>
+      
+      <!-- Bottom status section removed as per original -->
+    </div>
+  </div>
+</body>
+</html>

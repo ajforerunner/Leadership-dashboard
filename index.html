@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leadership Dashboard</title>
-  <!-- Import Nunito Sans font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Import Roboto Condensed font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #1a1a1f;
@@ -24,23 +24,42 @@
     }
     
     * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
     
     body {
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4d 50%, #24243e 100%);
+      /* Replace gradient with background image */
+      background-image: url('https://raw.githubusercontent.com/ajforerunner/Leadership-dashboard/main/74.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text-color);
       min-height: 100vh;
       padding: 20px;
-      padding-top: 40px;
+      padding-top: 35px; /* Balanced padding */
+      position: relative;
+    }
+    
+    /* Add overlay to make content more visible */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 10, 30, 0.7); /* Dark blue tint */
+      z-index: -1;
     }
     
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
     
     header {
@@ -48,7 +67,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
-      margin-bottom: 30px;
+      margin-bottom: 25px; /* Balanced margin */
     }
     
     .logo {
@@ -96,17 +115,20 @@
     main {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 18px; /* Balanced gap */
     }
     
     .card {
-      background: linear-gradient(145deg, rgba(23, 20, 53, 0.95), rgba(30, 27, 60, 0.9));
+      background: linear-gradient(145deg, rgba(23, 20, 53, 0.8), rgba(30, 27, 60, 0.75));
       border-radius: var(--card-radius);
-      padding: 20px;
+      padding: 18px; /* Balanced padding */
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.07);
+      max-height: calc(100vh - 170px); /* Limit height to fit in viewport */
+      display: flex;
+      flex-direction: column;
     }
     
     .card:hover {
@@ -118,11 +140,11 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 20px;
+      margin-bottom: 18px; /* Balanced margin */
     }
     
     .card-title {
-      font-size: 1.6rem;
+      font-size: 1.5rem; /* Balanced font size */
       letter-spacing: 0.5px;
       font-weight: 600;
       text-transform: uppercase;
@@ -132,22 +154,22 @@
       background: linear-gradient(to right, #ffffff, #e0e0e0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 4px;
+      margin-bottom: 3px; /* Balanced margin */
     }
     
     .card-subtitle {
       color: var(--gray-text);
-      font-size: 0.9rem;
-      margin-top: 5px;
+      font-size: 0.9rem; /* Balanced font size */
+      margin-top: 4px; /* Balanced margin */
     }
     
     .complete-btn {
       background: linear-gradient(135deg, #6131c5, #9454e6);
       border: none;
       color: var(--text-color);
-      padding: 8px 10px;
+      padding: 7px 10px; /* Balanced padding */
       border-radius: 6px;
-      font-size: 0.75rem;
+      font-size: 0.75rem; /* Balanced font size */
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -210,15 +232,38 @@
     .team-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 9px; /* Balanced gap */
+      overflow-y: auto; /* Enable scrolling if needed */
+      padding-right: 5px; /* Padding for scrollbar */
+      max-height: 100%; /* Take available height */
+      flex-grow: 1; /* Allow list to fill available space */
+    }
+
+    /* Custom scrollbar for team list */
+    .team-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .team-list::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    
+    .team-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+    
+    .team-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
     
     .team-item {
       display: flex;
       align-items: center;
-      padding: 12px;
-      background: linear-gradient(135deg, #171435 0%, #2a1b5b 100%);
-      border-radius: 10px;
+      padding: 10px; /* Balanced padding */
+      background: linear-gradient(135deg, rgba(23, 20, 53, 0.7), rgba(42, 27, 91, 0.7));
+      border-radius: 9px; /* Balanced border radius */
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       text-decoration: none;
       color: var(--text-color);
@@ -226,62 +271,52 @@
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.07);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      min-height: 42px; /* Balanced minimum height */
     }
     
     .team-item .team-name {
       transition: opacity 0.3s ease;
+      font-size: 0.95rem; /* Balanced font size */
     }
     
-    /* Team item ripple effect */
-    .team-item::after {
-      content: 'Complete Form ↗';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #8a63de;
-      font-weight: 700;
+    .team-item:hover .team-name {
       opacity: 0;
-      transition: opacity 0.05s ease;
-      z-index: 1;
-    }
-    
-    .team-item::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      opacity: 0;
-      border-radius: 100%;
-      transform: scale(1, 1) translate(-50%, -50%);
-      transform-origin: 50% 50%;
-    }
-    
-    .team-item:hover .team-name,
-    .team-item:hover .team-avatar {
-      opacity: 0;
-    }
-    
-    .team-item:hover::after {
-      opacity: 1;
-    }
-    
-    .team-item:hover::before {
-      animation: ripple 0.8s ease-out;
     }
     
     .team-item:hover {
       background: rgba(255, 255, 255, 0.85);
-      transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .blue-team-item:hover {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .team-item::after {
+      content: "Complete Form ↗";
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.95rem; /* Balanced font size */
+      font-weight: 700;
+      color: #8a63de;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .team-item:hover::after {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     /* Blue team items for Leadership Engagement */
     .blue-team-item {
-      background: linear-gradient(135deg, #1a2b54 0%, #253b80 100%);
+      background: linear-gradient(135deg, rgba(26, 43, 84, 0.7), rgba(37, 59, 128, 0.7));
     }
     
     .blue-team-item::after {
@@ -289,17 +324,17 @@
     }
     
     .team-avatar {
-      width: 40px;
-      height: 40px;
+      width: 35px; /* Balanced size */
+      height: 35px; /* Balanced size */
       background: linear-gradient(135deg, #6131c5, #9454e6);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      margin-right: 15px;
+      margin-right: 12px; /* Balanced margin */
       box-shadow: 0 2px 10px rgba(116, 79, 198, 0.6);
-      transition: opacity 0.3s ease;
+      font-size: 0.85rem; /* Balanced font size */
     }
     
     /* Blue avatars for Leadership Engagement */
@@ -309,13 +344,13 @@
     }
     
     .card:nth-child(2) {
-      background: linear-gradient(145deg, rgba(18, 31, 65, 0.98), rgba(22, 36, 72, 0.95));
+      background: linear-gradient(145deg, rgba(18, 31, 65, 0.8), rgba(22, 36, 72, 0.75));
     }
     
     .energy-flow {
-      margin-top: 30px;
-      padding: 30px;
-      background: linear-gradient(145deg, rgba(20, 20, 48, 0.9), rgba(26, 26, 58, 0.85));
+      margin-top: 20px; /* Balanced margin */
+      padding: 25px; /* Balanced padding */
+      background: linear-gradient(145deg, rgba(20, 20, 48, 0.8), rgba(26, 26, 58, 0.75));
       border-radius: var(--card-radius);
       position: relative;
       overflow: hidden;
@@ -325,15 +360,15 @@
     }
     
     .energy-title {
-      font-size: 2rem;
+      font-size: 1.8rem; /* Balanced font size */
       letter-spacing: 2px;
-      margin-bottom: 40px;
+      margin-bottom: 35px; /* Balanced margin */
     }
     
     .flow-visualization {
       position: relative;
-      height: 120px;
-      margin-top: 40px;
+      height: 110px; /* Balanced height */
+      margin-top: 30px; /* Balanced margin */
     }
     
     .flow-path {
@@ -341,10 +376,10 @@
       top: 50%;
       left: 0;
       width: 100%;
-      height: 20px;
+      height: 18px; /* Balanced height */
       background-color: rgba(51, 51, 71, 0.6);
       transform: translateY(-50%);
-      border-radius: 10px;
+      border-radius: 9px; /* Balanced border radius */
       overflow: hidden;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
     }
@@ -356,7 +391,7 @@
       width: 60%;
       height: 100%;
       background: linear-gradient(to right, var(--primary-color), rgba(255, 87, 34, 0.5));
-      border-radius: 10px;
+      border-radius: 9px; /* Balanced border radius */
     }
     
     /* Blue flow highlight */
@@ -366,8 +401,8 @@
     
     .flow-node {
       position: absolute;
-      width: 50px;
-      height: 50px;
+      width: 45px; /* Balanced size */
+      height: 45px; /* Balanced size */
       background-color: var(--primary-color);
       border-radius: 50%;
       top: 50%;
@@ -391,12 +426,13 @@
       top: 0;
       left: 0;
       background-color: var(--primary-color);
-      padding: 8px 15px;
+      padding: 7px 14px; /* Balanced padding */
       border-radius: 4px;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px; /* Balanced gap */
+      font-size: 0.95rem; /* Balanced font size */
     }
     
     /* Blue flow output */
@@ -440,9 +476,64 @@
       background-color: #444;
     }
     
+    /* Improved mobile responsiveness */
     @media (max-width: 768px) {
       main {
         grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .card {
+        max-height: none; /* Remove height limit on mobile */
+      }
+      
+      .team-list {
+        max-height: 320px; /* Limit height on mobile but allow more space */
+      }
+      
+      .card-header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .complete-btn {
+        align-self: flex-start;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .energy-flow {
+        padding: 18px;
+      }
+      
+      .energy-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+      }
+    }
+    
+    /* Very small screens */
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+      
+      .card {
+        padding: 15px;
+      }
+      
+      .team-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+      }
+      
+      .team-item {
+        padding: 8px 10px;
+      }
+      
+      .team-item .team-name {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -459,7 +550,7 @@
         <p class="card-subtitle">Team members</p>
       </div>
       <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="complete-btn" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
@@ -500,7 +591,7 @@
       <p class="card-subtitle">Team members</p>
     </div>
     <a href="https://forms.office.com/e/JkgTZM73wn" class="complete-btn blue-btn" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 11 12 14 22 4"></polyline>
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
       </svg>
@@ -554,12 +645,12 @@
           <div class="flow-highlight" style="width: 52%; background: linear-gradient(to right, #ff7f50, #ffa07a);"></div>
         </div>
         <div class="flow-node" style="left: 50%; background-color: #ff7f50; box-shadow: 0 0 15px rgba(255, 127, 80, 0.7);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
           </svg>
         </div>
         <div class="flow-output" style="background-color: #ff7f50;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
           </svg>
           RATE: 50%

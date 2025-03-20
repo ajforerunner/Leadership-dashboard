@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leadership Dashboard</title>
   <!-- Import Nunito Sans font -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #1a1a1f;
@@ -24,11 +24,11 @@
     }
     
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Nunito Sans', sans-serif;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
     
     body {
       background: linear-gradient(135deg, #0f0c29 0%, #1a1a4d 50%, #24243e 100%);
@@ -156,6 +156,38 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(116, 79, 198, 0.4);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Button hover effect with ripple */
+    .complete-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%, -50%);
+      transform-origin: 50% 50%;
+    }
+    
+    .complete-btn:hover::after {
+      animation: ripple 1s ease-out;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(30, 30);
+        opacity: 0;
+      }
     }
     
     /* Blue button for Leadership Engagement */
@@ -200,38 +232,51 @@
       transition: opacity 0.3s ease;
     }
     
-    .team-item:hover .team-name {
-      opacity: 0;
-    }
-    
-    .team-item:hover {
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .blue-team-item:hover {
-      background: rgba(255, 255, 255, 0.85);
-    }
-    
+    /* Team item ripple effect */
     .team-item::after {
-      content: "Complete Form ↗";
+      content: 'Complete Form ↗';
       position: absolute;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 0.95rem;
-      font-weight: 700;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: #8a63de;
+      font-weight: 700;
       opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
+      transition: opacity 0.05s ease;
+      z-index: 1;
+    }
+    
+    .team-item::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%, -50%);
+      transform-origin: 50% 50%;
+    }
+    
+    .team-item:hover .team-name,
+    .team-item:hover .team-avatar {
+      opacity: 0;
     }
     
     .team-item:hover::after {
       opacity: 1;
-      transform: translateY(0);
+    }
+    
+    .team-item:hover::before {
+      animation: ripple 0.8s ease-out;
+    }
+    
+    .team-item:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.15);
     }
     
     /* Blue team items for Leadership Engagement */
@@ -254,6 +299,7 @@
       font-weight: bold;
       margin-right: 15px;
       box-shadow: 0 2px 10px rgba(116, 79, 198, 0.6);
+      transition: opacity 0.3s ease;
     }
     
     /* Blue avatars for Leadership Engagement */
@@ -412,7 +458,7 @@
         <h2 class="card-title">Leadership Tour</h2>
         <p class="card-subtitle">Team members</p>
       </div>
-      <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="complete-btn" style="text-decoration: none;">
+      <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="complete-btn" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -423,23 +469,23 @@
         
         <div class="team-list">
           <!-- All team members link to the same tour form -->
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar">MV</div>
             <div class="team-name">Michaela Valovicova</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar">EG</div>
             <div class="team-name">Emma Gould</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar">JC</div>
             <div class="team-name">Jerome Crespin</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar">RG</div>
             <div class="team-name">Rachel Gwilliam</div>
           </a>
-          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item">
+          <a href="https://equans.sharepoint.com/sites/BIProjects/_layouts/15/listforms.aspx?cid=ZmM4MjNhMjYtMDY4NS00YzRmLWIzMTQtYTVmNDdlOWUzODY4&nav=OGQxNjBjYjEtNzg5MS00N2NjLWI0YTctODY3OTk0YWQzYmFl" class="team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar">EH</div>
             <div class="team-name">Emmanuel Helman</div>
           </a>
@@ -453,7 +499,7 @@
       <h2 class="card-title">Leadership Engagement</h2>
       <p class="card-subtitle">Team members</p>
     </div>
-    <a href="https://forms.office.com/e/JkgTZM73wn" class="complete-btn blue-btn" style="text-decoration: none;">
+    <a href="https://forms.office.com/e/JkgTZM73wn" class="complete-btn blue-btn" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 11 12 14 22 4"></polyline>
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -464,35 +510,35 @@
         
         <div class="team-list">
           <!-- All team members link to the same engagement form -->
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">SW</div>
             <div class="team-name">Steven Weir</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">AA</div>
             <div class="team-name">Adeel Aslam</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">CM</div>
             <div class="team-name">Chris Mosley</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">MK</div>
             <div class="team-name">Mark Kelly</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">NM</div>
             <div class="team-name">Neil McGrath</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">AM</div>
             <div class="team-name">Alan Miller</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">SM</div>
             <div class="team-name">Simon Millward</div>
           </a>
-          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item">
+          <a href="https://forms.office.com/e/JkgTZM73wn" class="team-item blue-team-item" target="_blank" rel="noopener noreferrer">
             <div class="team-avatar blue-avatar">CL</div>
             <div class="team-name">Charlie Louet</div>
           </a>
@@ -519,8 +565,6 @@
           RATE: 50%
         </div>
       </div>
-      
-      <!-- Bottom status section removed as per original -->
     </div>
   </div>
 </body>

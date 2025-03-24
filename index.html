@@ -31,18 +31,18 @@
     }
     
     body {
-      /* Replace gradient with background image */
-      background-image: url('https://raw.githubusercontent.com/ajforerunner/Leadership-dashboard/main/74.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: var(--text-color);
-      min-height: 100vh;
-      padding: 20px;
-      padding-top: 35px; /* Balanced padding */
-      position: relative;
-    }
+    /* Background image with proper fitting */
+    background-image: url('https://raw.githubusercontent.com/ajforerunner/Leadership-dashboard/main/74.png');
+    background-size: 100% 100%;  /* This will stretch the image to fit exactly */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 35px;
+    position: relative;
+}
     
     /* Add overlay to make content more visible */
     body::before {

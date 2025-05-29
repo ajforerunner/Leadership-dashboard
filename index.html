@@ -984,57 +984,6 @@
             </table>
         </div>
 
-        <div class="energy-flow">
-            <h2 class="energy-title">LEADERSHIP ENGAGEMENT VISIT - 2024</h2>
-            <div class="flow-visualization">
-                <div class="flow-path">
-                    <div class="flow-highlight" id="flowHighlight"></div>
-                </div>
-                <div class="flow-node" id="flowNode">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                    </svg>
-                </div>
-                <div class="flow-output" id="flowOutput">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                    </svg>
-                    <span id="flowRate">RATE: 0%</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Energy Flow Animation ---
-            const flowHighlight = document.getElementById('flowHighlight');
-            const flowNode = document.getElementById('flowNode');
-            const flowOutput = document.getElementById('flowOutput');
-            const flowRateSpan = document.getElementById('flowRate');
-
-            // Target percentage (changed from 52% to 50%)
-            const targetPercentage = 50;
-
-            // Delay the animation start slightly
-            setTimeout(() => {
-                if (flowHighlight) {
-                    flowHighlight.style.width = `${targetPercentage}%`;
-                }
-                if (flowNode) {
-                    const nodePosition = 5 + (targetPercentage * 0.90);
-                    flowNode.style.left = `${nodePosition}%`;
-                }
-                if (flowRateSpan) {
-                    flowRateSpan.textContent = `RATE: ${targetPercentage}%`;
-                }
-                if (flowOutput) {
-                    flowOutput.style.opacity = '1';
-                }
-            }, 500); // Start animation 500ms after page load
-
-        });
-    </script>
 </body>
 </html>
